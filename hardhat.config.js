@@ -1,3 +1,8 @@
+require("hardhat-deploy");
+require("hardhat-gas-reporter")
+require("@nomiclabs/hardhat-etherscan")
+require("dotenv").config();
+
 /** @type import('hardhat/config').HardhatUserConfig */
 
 const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL;
@@ -7,5 +12,40 @@ const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY;
 
 module.exports = {
   defaultNetwork: "hardhat",
+  networks: {
+    hardhat: {
+      chainId: 31337,
+      blockConfirmations: 1,
+    },
+    localhost: {
+      chainId: 31337,
+    },
+    rinkeby: {
+      chainId: 4,
+      blockConfirmations: 6,
+      url: RINKEBY_RPC_URL,
+      accounts: [PRIVATE_KEY],
+    },
+  },
   solidity: "0.8.7",
+  namedAccounts: {
+    deployer: {
+      default: 0,
+    },
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_API_KEY,
+  },
+  gasReporter: {
+    enable: true,
+    apiKey: COINMARKETCAP_API_KEY,
+    noColors: true,
+    currency: "KRW",
+    coinmarketcap: COINMARKETCAP_API_KEY,
+    token:"ETH",
+    outputFile: "gas-report.txt"
+  },
+  mocha: {
+    timeout: 300000,
+  }
 };
