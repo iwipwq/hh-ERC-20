@@ -1,11 +1,15 @@
+const { ethers } = require("hardhat");
+
+console.log (ethers);
+
 const networkConfig = {
   4: {
     name: "rinkeby",
-    initialSupply: 50,
+    initialSupply: ethers.utils.parseEther("50"),
   },
   31337: {
     name: "localhost",
-    initialSupply: 50,
+    initialSupply: ethers.utils.parseEther("50"),
   },
 };
 

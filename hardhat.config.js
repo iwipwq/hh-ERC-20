@@ -1,6 +1,7 @@
 require("hardhat-deploy");
 require("hardhat-gas-reporter")
 require("@nomiclabs/hardhat-etherscan")
+require("@nomiclabs/hardhat-ethers")
 require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -37,8 +38,7 @@ module.exports = {
     apiKey: ETHERSCAN_API_KEY,
   },
   gasReporter: {
-    enable: true,
-    apiKey: COINMARKETCAP_API_KEY,
+    enabled: true,
     noColors: true,
     currency: "KRW",
     coinmarketcap: COINMARKETCAP_API_KEY,
